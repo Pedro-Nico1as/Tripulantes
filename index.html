@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tripulantes Transportes | Viagens e Fretamentos</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/T3_branco.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração de Cores Customizadas no Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                           // blue: '#0000FF',    // Azul Puro
+                            blue:'#3131EF',
+                            dark: '#000000',    // Preto (Suporte)
+                            light: '#F3F4F6',   // Cinza muito claro para fundos
+                            accent: '#000000',  // Preto para contraste
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'], // Fonte para textos longos
+                        heading: ['Montserrat', 'sans-serif'], // Fonte para títulos
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Montserrat & Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Montserrat', sans-serif; }
+        
+        /* Efeito de zoom suave nas imagens dos cards */
+        .card-zoom-image {
+            transition: transform 0.5s ease;
+        }
+        .group:hover .card-zoom-image {
+            transform: scale(1.1);
+        }
+
+        /* AJUSTE DO ZOOM DA IMAGEM PRINCIPAL (HERO) */
+        .hero-bg-image {
+            object-fit: cover;
+            object-position: center; 
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased bg-white overflow-x-hidden w-full relative">
+
+    <!-- Navegação / Cabeçalho -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#inicio" class="flex items-center gap-3">
+                        <img src="img/T3_branco.png" alt="Logo T3 Tripulantes" class="h-10 md:h-12 w-auto rounded object-contain">
+                        <span class="text-2xl font-bold font-heading text-white hidden sm:block tracking-tight">Tripulantes Turismo</span>
+                    </a>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8 items-center font-heading">
+                    <a href="#inicio" class="text-white hover:text-gray-200 transition-colors font-medium text-sm tracking-wide">Início</a>
+                    <a href="#quem-somos" class="text-white hover:text-gray-200 transition-colors font-medium text-sm tracking-wide">Quem Somos</a>
+                    <a href="#destinos" class="text-white hover:text-gray-200 transition-colors font-medium text-sm tracking-wide">Destinos</a>
+                    <a href="#contato" class="text-white hover:text-gray-200 transition-colors font-medium text-sm tracking-wide">Contato</a>
+                    <a href="https://wa.me/5531999999999" target="_blank" class="bg-brand-dark text-white hover:bg-gray-800 px-5 py-2.5 rounded-full font-bold transition-colors text-sm shadow-lg flex items-center gap-2">
+                        <i data-lucide="phone" class="w-4 h-4"></i> Falar no WhatsApp
+                    </a>
+                </div>
+
+                <!-- Botão Menu Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white focus:outline-none">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-blue absolute top-full left-0 w-full shadow-xl font-heading">
+            <div class="px-4 pt-2 pb-6 space-y-2 text-center">
+                <a href="#inicio" class="block text-white hover:text-gray-200 py-2 font-medium mobile-link">Início</a>
+                <a href="#quem-somos" class="block text-white hover:text-gray-200 py-2 font-medium mobile-link">Quem Somos</a>
+                <a href="#destinos" class="block text-white hover:text-gray-200 py-2 font-medium mobile-link">Destinos</a>
+                <a href="#contato" class="block text-white hover:text-gray-200 py-2 font-medium mobile-link">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <header id="inicio" class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-black pt-20 pb-12">
+        <!-- Background Imagem de Ônibus -->
+        <div class="absolute inset-0 z-0">
+            <img src="img/Foto_Onibus3.jpg" alt="Ônibus de turismo moderno na estrada" class="w-full h-full hero-bg-image" />
+            <div class="absolute inset-0 bg-black/60 bg-gradient-to-t from-brand-black/80 to-transparent z-0"></div>
+        </div>
+
+        <!-- Conteúdo Hero -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
+            <span class="text-white font-bold font-heading tracking-[0.2em] uppercase text-sm mb-4 block">Excelência em Fretamento Rodoviário</span>
+            <h1 class="text-4xl md:text-6xl md:leading-tight font-extrabold text-white mb-6">
+                O Brasil é mais bonito pela janela de um  <span class="text-brand-blue  decoration-4">Tripulantes</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-100 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Especialistas em conectar o seu grupo aos melhores destinos do país. Partindo de Minas Gerais, garantimos frota moderna, padrão executivo e o cuidado que você merece em cada quilômetro.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 font-heading w-full px-4 sm:px-0">
+                <a href="#destinos" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-blue px-8 py-4 rounded-full font-bold transition-all text-sm md:text-base uppercase tracking-wider flex items-center justify-center gap-2">
+                    Nossos Destinos
+                </a>
+                <a href="https://wa.me/5531999999999" target="_blank" class="bg-green-500 text-white hover:bg-green-600 px-8 py-4 rounded-full font-bold transition-all text-sm md:text-base uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg hover:-translate-y-1">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    Solicitar Orçamento
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. Quem Somos Section -->
+    <section id="quem-somos" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Galeria de Imagens da Frota (Carrossel) -->
+                <div class="relative w-full max-w-full">
+                    <div class="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl group">
+                        <!-- Contêiner interno do Carrossel -->
+                        <div id="carousel-inner" class="flex transition-transform duration-500 ease-in-out h-full transform-gpu">
+                            <div class="min-w-full w-full h-full flex-shrink-0">
+                                <img src="img/Foto_Onibus2.jpg" alt="Frota Tripulantes" class="w-full h-full object-cover" />
+                            </div>
+                            <div class="min-w-full w-full h-full flex-shrink-0">
+                                <img src="img/Foto_Onibus.jpg" alt="Interior confortável" class="w-full h-full object-cover" />
+                            </div>
+                            <div class="min-w-full w-full h-full flex-shrink-0">
+                                <img src="img/Foto_Onibus4.jpg" alt="Viagem turística" class="w-full h-full object-cover" />
+                            </div>
+                            <div class="min-w-full w-full h-full flex-shrink-0">
+                                <img src="img/Foto_Onibus5.jpg" alt="Segurança na estrada" class="w-full h-full object-cover" />
+                            </div>
+                        </div>
+
+                        <!-- Botões de Navegação -->
+                        <button id="prev-slide" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-brand-blue text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all cursor-pointer focus:outline-none">
+                            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                        </button>
+                        <button id="next-slide" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-brand-blue text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all cursor-pointer focus:outline-none">
+                            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                        </button>
+
+                        <!-- Indicadores (Dots) -->
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+                            <button class="dot w-3 h-3 rounded-full bg-white opacity-100 shadow-md transition-opacity cursor-pointer focus:outline-none" data-index="0"></button>
+                            <button class="dot w-3 h-3 rounded-full bg-white opacity-50 shadow-md transition-opacity cursor-pointer focus:outline-none" data-index="1"></button>
+                            <button class="dot w-3 h-3 rounded-full bg-white opacity-50 shadow-md transition-opacity cursor-pointer focus:outline-none" data-index="2"></button>
+                            <button class="dot w-3 h-3 rounded-full bg-white opacity-50 shadow-md transition-opacity cursor-pointer focus:outline-none" data-index="3"></button>
+                        </div>
+                    </div>
+                    
+                    <!-- Badge Flutuante -->
+                    <div class="absolute -bottom-4 -left-4 bg-brand-blue text-white p-4 rounded-xl z-10 shadow-xl border-[3px] border-white hidden sm:block">
+                        <p class="font-bold font-heading text-lg mb-0.5">Base Operacional</p>
+                        <p class="text-white flex items-center gap-1.5 text-sm font-semibold">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i> Belo Horizonte, MG
+                        </p>
+                    </div>
+
+                    <!-- Badge Mobile -->
+                    <div class="mt-4 sm:hidden bg-brand-blue text-white p-4 rounded-xl z-10 shadow-md inline-block">
+                        <p class="font-bold font-heading text-lg mb-0.5">Base Operacional</p>
+                        <p class="text-white flex items-center gap-1.5 text-sm font-semibold">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i> Belo Horizonte, MG
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Texto -->
+                <div>
+                    <h2 class="text-brand-dark font-bold uppercase tracking-[0.15em] text-sm mb-2">Conheça a Nossa Essência</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-brand-blue mb-6 leading-tight">Tradição, Confiabilidade e Segurança no Transporte</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                        A <strong class="text-brand-dark">Tripulantes</strong> é sinônimo de excelência em logística de passageiros. Com sede estratégica na capital mineira, somos a escolha ideal para viagens de turismo, excursões e fretamentos corporativos.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed text-lg">
+                        Nosso compromisso é com a sua tranquilidade. Mantemos uma frota rigorosamente inspecionada, equipada com poltronas ergonômicas, climatização de alto desempenho e conduzida por profissionais em constante capacitação para garantir a melhor experiência na estrada.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-50 p-3 rounded-lg text-brand-blue">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-lg">Rigor em Segurança</h4>
+                                <p class="text-sm text-gray-500 mt-1">Frota 100% monitorada, revisada periodicamente e aprovada pela ANTT.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-50 p-3 rounded-lg text-brand-blue">
+                                <i data-lucide="armchair" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-lg">Padrão Executivo</h4>
+                                <p class="text-sm text-gray-500 mt-1">Veículos modernos projetados para viagens de longa distância.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Nossos Destinos Section -->
+    <section id="destinos" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-dark font-bold uppercase tracking-[0.15em] text-sm mb-2">Descubra o Brasil</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4">Explore os Principais Destinos</h3>
+                <p class="text-gray-600 text-lg">Com partidas regulares e fretamentos personalizados de Belo Horizonte, levamos seu grupo para vivenciar experiências inesquecíveis nos quatro cantos do país.</p>
+            </div>
+
+            <!-- Grid de Destinos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Destino 1 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg h-72 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800&auto=format&fit=crop" alt="Rio de Janeiro" class="absolute inset-0 w-full h-full object-cover card-zoom-image" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-brand-blue text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block font-heading uppercase tracking-wider">Sudeste</span>
+                        <h4 class="text-2xl font-bold text-white">Rio de Janeiro</h4>
+                        <p class="text-gray-200 text-sm flex items-center gap-1 mt-1"><i data-lucide="map" class="w-4 h-4"></i> Litoral e Cultura Única</p>
+                    </div>
+                </div>
+
+                <!-- Destino 2 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg h-72 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1543059080-f9b1272213d5?q=80&w=800&auto=format&fit=crop" alt="São Paulo" class="absolute inset-0 w-full h-full object-cover card-zoom-image" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-brand-blue text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block font-heading uppercase tracking-wider">Sudeste</span>
+                        <h4 class="text-2xl font-bold text-white leading-tight">São Paulo</h4>
+                        <p class="text-gray-200 text-sm flex items-center gap-1 mt-1"><i data-lucide="map" class="w-4 h-4"></i> Negócios e Turismo Religioso</p>
+                    </div>
+                </div>
+
+                <!-- Destino 3 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg h-72 cursor-pointer">
+                    <img src="img/Bahia.jpg" alt="Bahia" class="absolute inset-0 w-full h-full object-cover card-zoom-image" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-brand-blue text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block font-heading uppercase tracking-wider">Nordeste</span>
+                        <h4 class="text-2xl font-bold text-white">Bahia</h4>
+                        <p class="text-gray-200 text-sm flex items-center gap-1 mt-1"><i data-lucide="map" class="w-4 h-4"></i> História e Paisagens</p>
+                    </div>
+                </div>
+
+                <!-- Destino 4 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg h-72 cursor-pointer">
+                    <img src="img/Goias.jpg" alt="Goiás" class="absolute inset-0 w-full h-full object-cover card-zoom-image" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-brand-blue text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block font-heading uppercase tracking-wider">Centro-Oeste</span>
+                        <h4 class="text-2xl font-bold text-white">Goiás</h4>
+                        <p class="text-gray-200 text-sm flex items-center gap-1 mt-1"><i data-lucide="map" class="w-4 h-4"></i> Águas Termais e Ecoturismo</p>
+                    </div>
+                </div>
+
+                <!-- Destino 5 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg h-72 cursor-pointer">
+                    <img src="IMG/Minas.jpg" alt="Minas Gerais" class="absolute inset-0 w-full h-full object-cover card-zoom-image" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-brand-blue text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block font-heading uppercase tracking-wider">Sudeste</span>
+                        <h4 class="text-2xl font-bold text-white">Minas Gerais</h4>
+                        <p class="text-gray-200 text-sm flex items-center gap-1 mt-1"><i data-lucide="map" class="w-4 h-4"></i> Cidades Históricas e Arte</p>
+                    </div>
+                </div>
+
+                <!-- Destino 6 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg h-72 cursor-pointer">
+                    <img src="img/Espirito_Santo.jpg" alt="Espírito Santo" class="absolute inset-0 w-full h-full object-cover card-zoom-image" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-brand-blue text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block font-heading uppercase tracking-wider">Sudeste</span>
+                        <h4 class="text-2xl font-bold text-white">Espírito Santo</h4>
+                        <p class="text-gray-200 text-sm flex items-center gap-1 mt-1"><i data-lucide="map" class="w-4 h-4"></i> Praias e Montanhas</p>
+                    </div>
+                </div>
+
+                <!-- Destino 7 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg h-72 cursor-pointer">
+                    <img src="img/Brasilia.jpg" alt="Distrito Federal" class="absolute inset-0 w-full h-full object-cover card-zoom-image" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-brand-blue text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block font-heading uppercase tracking-wider">Centro-Oeste</span>
+                        <h4 class="text-2xl font-bold text-white">Distrito Federal</h4>
+                        <p class="text-gray-200 text-sm flex items-center gap-1 mt-1"><i data-lucide="map" class="w-4 h-4"></i> Arquitetura Monumental</p>
+                    </div>
+                </div>
+
+                <!-- Ver todos CTA -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg h-72 flex items-center justify-center bg-brand-blue hover:bg-gray-900 transition-colors cursor-pointer border-2 border-dashed border-white/30">
+                    <div class="text-center px-4">
+                        <div class="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="map-pinned" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Outros Destinos</h4>
+                        <p class="text-white text-sm mb-4">Realizamos viagens para qualquer lugar do Brasil.</p>
+                        <span class="text-white underline font-medium group-hover:text-gray-300 transition-colors text-sm">Consultar viabilidade</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12 font-heading">
+                <a href="#contato" class="inline-flex items-center gap-2 bg-transparent border-2 border-brand-dark text-brand-dark hover:bg-brand-dark hover:text-white px-8 py-4 rounded-full font-bold transition-all uppercase tracking-wider text-sm w-full sm:w-auto text-center justify-center">
+                    Agende seu Destino no WhatsApp <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Contato e Reservas Section -->
+    <section id="contato" class="py-24 bg-white relative overflow-hidden">
+        <!-- Detalhe de fundo geométrico -->
+        <div class="absolute top-0 left-0 w-full h-1/2 bg-brand-light -skew-y-3 transform origin-top hidden lg:block z-0"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            
+            <h2 class="text-brand-dark font-bold uppercase tracking-[0.15em] text-sm mb-2">Fale com Nossos Consultores</h2>
+            <h3 class="text-3xl md:text-4xl font-bold text-brand-blue mb-6">Pronto para planejar sua viagem?</h3>
+            <p class="text-gray-600 mb-12 text-lg max-w-2xl mx-auto">
+                Nosso atendimento é ágil, humano e focado nas suas necessidades. Entre em contato para tirar dúvidas, conhecer nossos roteiros em detalhes e solicitar um orçamento sob medida.
+            </p>
+
+            <!-- Card Centralizado do WhatsApp -->
+            <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 md:p-12 relative z-10 flex flex-col items-center justify-center">
+                <div class="bg-green-100 p-6 rounded-full text-green-600 mb-6 shadow-inner">
+                    <i data-lucide="message-circle" class="w-12 h-12"></i>
+                </div>
+                <h4 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Atendimento Exclusivo</h4>
+                <p class="text-gray-500 mb-8 max-w-md">
+                    Clique no botão abaixo para ser direcionado ao nosso setor comercial e conversar com um especialista.
+                </p>
+                
+                <a href="https://wa.me/5531999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20fretamentos%20e%20viagens." target="_blank" class="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold font-heading uppercase tracking-wider py-5 px-10 rounded-full shadow-lg hover:shadow-xl transition-all flex justify-center items-center gap-3 text-sm md:text-base hover:-translate-y-1">
+                    <i data-lucide="phone" class="w-5 h-5"></i> Conversar no WhatsApp
+                </a>
+            </div>
+
+            <!-- Outras Informações de Contato -->
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-4 mt-16 text-left max-w-4xl mx-auto">
+                <!-- Email -->
+                <div class="flex items-center gap-4 sm:gap-5 bg-white p-5 sm:p-6 rounded-xl border border-gray-200 shadow-sm transition-transform hover:-translate-y-1 overflow-hidden">
+                    <div class="bg-blue-50 p-3 sm:p-4 rounded-full text-brand-blue shrink-0">
+                        <i data-lucide="mail" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-xs sm:text-sm text-gray-500 font-medium mb-1">Contato por E-mail</p>
+                        <a href="mailto:emaildoeustaquio@gmail.com.br" class="text-sm md:text-base font-bold font-heading text-brand-dark hover:text-brand-blue transition-colors break-all block" title="emaildoeustaquio@gmail.com.br">emaildoeustaquio@gmail.com.br</a>
+                    </div>
+                </div>
+
+                <!-- Endereço -->
+                <div class="flex items-center gap-4 sm:gap-5 bg-white p-5 sm:p-6 rounded-xl border border-gray-200 shadow-sm transition-transform hover:-translate-y-1 overflow-hidden">
+                    <div class="bg-blue-50 p-3 sm:p-4 rounded-full text-brand-blue shrink-0">
+                        <i data-lucide="map-pin" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-xs sm:text-sm text-gray-500 font-medium mb-1">Base de Operações</p>
+                        <p class="text-sm md:text-base font-bold font-heading text-brand-dark block">Belo Horizonte, Minas Gerais</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-blue pt-16 pb-8 border-t-4 border-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12 text-center md:text-left">
+                
+                <!-- Logo e desc -->
+                <div>
+                    <a href="#inicio" class="flex items-center justify-center md:justify-start gap-3 mb-6">
+                        <img src="img/T3_branco.png" alt="Logo T3 Tripulantes" class="h-12 w-auto rounded object-contain">
+                        <span class="text-2xl font-bold font-heading text-white tracking-tight">Tripulantes Turismo</span>
+                    </a>
+                    <p class="text-white/80 text-sm leading-relaxed">
+                        Referência em fretamento rodoviário e turismo. Conectamos Belo Horizonte aos destinos mais incríveis do Brasil com segurança, pontualidade e conforto de nível executivo.
+                    </p>
+                </div>
+
+                <!-- Links Rápidos -->
+                <div>
+                    <h4 class="text-white font-bold font-heading mb-4 uppercase text-sm tracking-widest">Navegação</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#inicio" class="text-white/80 hover:text-white text-sm transition-colors">Início</a></li>
+                        <li><a href="#quem-somos" class="text-white/80 hover:text-white text-sm transition-colors">Nossa Empresa</a></li>
+                        <li><a href="#destinos" class="text-white/80 hover:text-white text-sm transition-colors">Portfólio de Destinos</a></li>
+                        <li><a href="#contato" class="text-white/80 hover:text-white text-sm transition-colors">Fale Conosco</a></li>
+                    </ul>
+                </div>
+
+                <!-- Info Legal -->
+                <div>
+                    <h4 class="text-white font-bold font-heading mb-4 uppercase text-sm tracking-widest">Atendimento</h4>
+                    <ul class="space-y-3 text-sm text-white/80">
+                        <li class="flex items-center justify-center md:justify-start gap-2"><i data-lucide="clock" class="w-4 h-4"></i> Seg. a Sex: 06h às 22h</li>
+                        <li class="flex items-center justify-center md:justify-start gap-2"><i data-lucide="clock" class="w-4 h-4"></i> Sábado e Domingo: 06h às 18h</li>
+                        <li class="mt-6 pt-4 border-t border-white/10">
+                            <strong class="text-white block font-heading">Tripulantes Turismo LTDA</strong>
+                            <span class="text-xs mt-1 block">CNPJ: 40.627.026/0001-06</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8 text-center flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/60 text-sm">
+                    &copy; 2026 Tripulantes Turismo. Todos os direitos reservados.
+                </p>
+                <p class="text-white/60 text-sm flex items-center gap-1">
+                
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="#contato" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 group">
+        <i data-lucide="phone" class="w-7 h-7"></i>
+        <!-- Tooltip -->
+        <span class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-brand-dark text-white text-sm font-bold font-heading px-3 py-1.5 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none hidden md:block">
+            Fale com um Especialista
+        </span>
+    </a>
+
+    <!-- Scripts de Interatividade -->
+    <script>
+        // Inicializar ícones Lucide
+        lucide.createIcons();
+
+        // Lógica do Carrossel de Imagens
+        const carouselInner = document.getElementById('carousel-inner');
+        const prevBtn = document.getElementById('prev-slide');
+        const nextBtn = document.getElementById('next-slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        const totalSlides = 4;
+        let carouselInterval;
+
+        function updateCarousel() {
+            if (!carouselInner) return;
+            carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.remove('opacity-50');
+                    dot.classList.add('opacity-100');
+                } else {
+                    dot.classList.add('opacity-50');
+                    dot.classList.remove('opacity-100');
+                }
+            });
+        }
+
+        function startCarousel() {
+            carouselInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }, 4000); // Muda a imagem a cada 4 segundos
+        }
+
+        function resetCarouselInterval() {
+            clearInterval(carouselInterval);
+            startCarousel();
+        }
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+                resetCarouselInterval();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+                resetCarouselInterval();
+            });
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    currentSlide = parseInt(e.target.dataset.index);
+                    updateCarousel();
+                    resetCarouselInterval();
+                });
+            });
+
+            // Iniciar reprodução automática
+            startCarousel();
+        }
+
+        // Controle do Menu Mobile
+        const btnMenu = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btnMenu.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Efeito do Navbar ao rolar a página
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-brand-blue', 'shadow-md');
+                navbar.classList.remove('bg-transparent', 'py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('bg-brand-blue', 'shadow-md');
+                navbar.classList.add('bg-transparent', 'py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+    </script>
+</body>
+</html>
